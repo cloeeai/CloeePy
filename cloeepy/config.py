@@ -1,7 +1,6 @@
 import os
 import sys
 import yaml
-import json
 
 class obj(object):
     """

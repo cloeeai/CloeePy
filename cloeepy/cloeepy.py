@@ -1,9 +1,7 @@
 import os
 import sys
-import bson
 import logging
 import importlib.util
-from datetime import datetime
 from pythonjsonlogger import jsonlogger
 from cloeepy.config import Config
 from cloeepy.logger import Logger

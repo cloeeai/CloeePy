@@ -2,15 +2,15 @@ from distutils.core import setup
 
 setup(
     name='CloeePy',
-    version='0.0.1-dev',
+    version='0.0.0-rc3',
     packages=['cloeepy',],
     package_data = {
-        '.': ['*.md'],
         'cloeepy': ['data/*.yml'],
     },
     include_package_data=True,    # include everything in source control
     license='MIT',
     description="Light weight framework for non-HTTP systems.",
+    long_description=open('README.md').read(),
     install_requires=[
           "pyaml==17.12.1",
           "python-json-logger==0.1.8",

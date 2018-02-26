@@ -83,7 +83,7 @@ class Logger(object):
 
         self._logger = logging.getLogger("CloeePyFramework")
         logHandler = logging.StreamHandler()
-        logHandler.setFormatter(self._formatter)
+        logHandler.setFormatter(formatter)
         self._logger.addHandler(logHandler)
         self._logger.setLevel(self._log_level)
 

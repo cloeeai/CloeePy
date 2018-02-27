@@ -12,9 +12,9 @@ setup(
     description="Light weight framework for non-HTTP systems.",
     long_description=open('README.md').read(),
     install_requires=[
-          "pyaml==17.12.1",
-          "python-json-logger==0.1.8",
-          "PyYAML==3.12",
+          "pyaml>=17",
+          "python-json-logger>=0.1",
+          "PyYAML>=3,<4",
      ],
      url = "https://github.com/cloeeai/CloeePy",
      author = "Scott Crespo",

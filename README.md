@@ -5,15 +5,60 @@ not building a web system.
 CloeePy uses YAML configuration files, which integrates better with Kubernetes'
 ConfigMaps.
 
+**This project is currently in alpha.**
+
 ## System Requirements
 - Unix-based operating system
-- Python 3.x
+- Python 3.3+
 
 ## Installation
 `pip install CloeePy`
 
 ## Configuration
-Please see the [sample configuration] for details of how to configure Cloee
+Please see the [example configuration](./example-config.yml) for details of how to configure
+
+A minimal configuration would be:
+
+```
+# config.yml
+
+# CloeePy Framework and plugins configuration listed under CloeePy key
+CloeePy:
+  Logging:
+    formatter: text
+    level: debug
+  Plugins: {}
+
+# Your application specific configurations can go here
+CustomVar: custom_value
+```
+
+## Usage
+Using CloeePy is simple. Just import the framework, tell CloeePy where your config file
+is located, and use the plugins that are attached to the application object.
+
+With programs consisting of multiple modules, you can access the CloeePy instance
+by re-instantiating it via `app = CloeePy()`. The CloeePy instance is a singleton,
+so it will only ever be instantiated once per process.
+
+The only plugin that comes packaged with CloeePy (at this point) is the logger.
+
+```
+# main.py
+
+from cloeepy import CloeePy
+
+if __name__ == "__main__":
+  # Required: set config path as environment variable
+  os.environ["CLOEEPY_CONFIG_PATH"] = /path/to/config.yml
+
+  # instantiate application instance
+  app = CloeePy()
+
+  # write a log entry to stdout
+  app.log.info("Hello World!")
+```
+
 
 ## Background
 This package is brought to you by the engineering team at Cloee. We build
@@ -44,7 +89,7 @@ Kubernetes. YAML has become the de-facto configuration format for many modern
 applications, and Kuberenetes supports YAML-based ConfigMaps that can be added to
 a container at startup time.
 
-**Configuration Object, NOT a Configuration Dictionary**
+**Configuration object, NOT configuration dictionary**
 
 Okay, this is a nit-picky one. But when you have deeply nested configurations,
 isn't it annoying when all of your configuration data is stored as a Python dictionary?
@@ -60,3 +105,16 @@ instead of this:
 
 Nonetheless, if you REALLY like dictionary access, you still have access to
 your configuration as a dictionary.
+
+**Extensible via plugins**
+
+You can extend CloeePy by creating plugins. Plugins allow you to create
+anything you want and attach it to the application context. This is particularly
+useful for managing database connections or sharing common data/objects
+throughout your application.
+
+## Maintainers
+Scott Crespo (@scottcrespo)
+
+## Contributing
+If you would like to contribute, please read the [Contributor's Guide](./CONTRIBUTING.md)

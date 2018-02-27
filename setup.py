@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='CloeePy',
-    version='0.0.0-rc4',
+    version='0.0.0-rc5',
     packages=['cloeepy',],
     package_data = {
         'cloeepy': ['data/*.yml'],

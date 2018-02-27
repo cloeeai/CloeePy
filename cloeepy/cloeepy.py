@@ -43,8 +43,10 @@ class CloeePy(object):
                         spec.loader.exec_module(module)
                         sys.modules[k] = module
 
-                    module_class_instance = module.get_class()(v, self.log)
-                    setattr(self, module_class_instance.get_context_name(), module_class_instance.get_context_value())
+                    # initialize the plugin
+                    plugin = module.get_plugin_class()(config=v, log=self.log)
+                    # attach plugin to self at plugin namespace
+                    setattr(self, plugin.get_namespace(), plugin.get_value())
 
     instance = None
 

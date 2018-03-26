@@ -44,7 +44,7 @@ class CloeePy(object):
                         sys.modules[k] = module
 
                     # initialize the plugin
-                    plugin = module.get_plugin_class()(config=v, log=self.log)
+                    plugin = module.get_plugin_class()(config=v, log=self._log)
                     # attach plugin to self at plugin namespace
                     setattr(self, plugin.get_namespace(), plugin.get_value())
 
